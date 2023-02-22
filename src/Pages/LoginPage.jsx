@@ -93,8 +93,8 @@ export const LoginPage = () => {
                                 />
                                 <Box pb={2}>
                                     <Button
-                                        /* disabled={!password.campo || !email.campo || !email.valido || !password.valido} */
-                                        /* onClick={submitHandler} */
+                                        disabled={!password.campo || !email.campo || !email.valido || !password.valido}
+                                        onClick={submitHandler}
                                         fullWidth
                                         variant="contained"
                                         size='small'
