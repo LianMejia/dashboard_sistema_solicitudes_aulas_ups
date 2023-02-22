@@ -1,31 +1,39 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState, useRef, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import edificio_f from './../assets/edificio_f.jpg'
 import Logo_ups from './../assets/Logo_ups.png'
+import { login } from '../redux/actions/account/authActions'
+
+import InputValidation from '../components/utils/InputValidation';
 
 const theme = createTheme();
 
 export const LoginPage = () => {
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
-    };
+
+    const dispatch = useDispatch()
+    const userLogin = useSelector(state => state.userLogin)
+    const { error, loading } = userLogin
+    const [email, setEmail] = useState({ campo: '', valido: true })
+    const [password, setPassword] = useState({ campo: '', valido: null })
+
+    const submitHandler = (e) => {
+        e.preventDefault()
+        if (email.valido === true && password.valido === true) {
+            dispatch(login({
+                'email': email.campo,
+                'password': password.campo
+            }))
+        }
+    }
 
     return (
         <ThemeProvider theme={theme}>
@@ -48,8 +56,8 @@ export const LoginPage = () => {
                             <img width={250} src={Logo_ups} alt="" />
                         </Box>
                         <Paper elevation={3}>
-                            <Box component="form" px={2} pb={2} pt={1}>
-                                <TextField
+                            <Box px={2} pb={2} pt={2}>
+                                {/* <TextField
                                     margin="normal"
                                     fullWidth
                                     id="correo"
@@ -65,10 +73,28 @@ export const LoginPage = () => {
                                     type="password"
                                     id="password"
                                     size='small'
+                                /> */}
+                                <InputValidation
+                                    estado={email}
+                                    cambiarEstado={setEmail}
+                                    type="email"
+                                    label="Correo electrónico"
+                                    name="email"
                                 />
-                                <Box py={2}>
+
+                                <InputValidation
+                                    estado={password}
+                                    cambiarEstado={setPassword}
+                                    type="password"
+                                    label="Contraseña"
+                                    name="password"
+                                    helperText="Minimo 8 caracteres"
+                                    patterns={/^.{8,30}$/}
+                                />
+                                <Box pb={2}>
                                     <Button
-                                        type="submit"
+                                        /* disabled={!password.campo || !email.campo || !email.valido || !password.valido} */
+                                        /* onClick={submitHandler} */
                                         fullWidth
                                         variant="contained"
                                         size='small'
