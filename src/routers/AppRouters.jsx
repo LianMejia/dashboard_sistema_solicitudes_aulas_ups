@@ -17,7 +17,9 @@ import { authState } from '../redux/actions/account/authActions';
 
 import { HomePage } from '../pages/HomePage';
 import { LoginPage } from '../pages/LoginPage';
-
+import { SolicitudesSoportePage } from '../pages/solicitudes/SolicitudesSoportes/SolicitudesSoportePage';
+import { CrearUsuario } from '../pages/usuarios/CrearUsuario';
+import { ListaUsuarios } from '../pages/usuarios/ListaUsuarios';
 export const AppRouters = () => {
     let theme = createTheme({
         typography: {
@@ -88,19 +90,35 @@ export const AppRouters = () => {
                                     <HomePage />
                                 </PrivateRoute>
                             } />
+
                             <Route path='/account/login/' element={
                                 <PublicRoute isAuth={isAuth}>
                                     <LoginPage />
                                 </PublicRoute>
                             } />
-                            {/* <Route path="productos">
-                                <Route path='ingreso-productos/:id' element={
+
+                            <Route path="solicitudes">
+                                <Route path='soportes' element={
                                     <PrivateRoute isAuth={isAuth}>
-                                        <SolicitudServicioPage />
+                                        <SolicitudesSoportePage />
+                                    </PrivateRoute>
+                                } />
+                            </Route>
+
+                            <Route path="usuarios">
+                                <Route path='crear-usuario' element={
+                                    <PrivateRoute isAuth={isAuth}>
+                                        <CrearUsuario />
                                     </PrivateRoute>
                                 } />
 
-                            </Route> */}
+                                <Route path='lista-de-usuarios' element={
+                                    <PrivateRoute isAuth={isAuth}>
+                                        <ListaUsuarios />
+                                    </PrivateRoute>
+                                } />
+
+                            </Route>
 
                         </Routes>
                     </Box>

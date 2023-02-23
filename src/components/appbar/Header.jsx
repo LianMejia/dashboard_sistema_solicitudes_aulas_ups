@@ -17,6 +17,7 @@ import { ListSolicitudes } from './listItem/ListSolicitudes';
 
 import Logo_ups from './../../assets/Logo_ups.png'
 import { ListEdificios } from './listItem/ListEdificios';
+import { ListUsuarios } from './listItem/ListUsuarios';
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
@@ -91,6 +92,7 @@ export const Header = (props) => {
                 </ListItemButton>
                 <ListSolicitudes />
                 <ListEdificios/>
+                <ListUsuarios/>
             </List>
         </>
     );

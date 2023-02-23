@@ -1,8 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ListItemIcon, ListItemButton, Collapse, ListItemText, List } from '@mui/material';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import BadgeTwoToneIcon from '@mui/icons-material/BadgeTwoTone';
 import ExpandLess from '@mui/icons-material/ExpandMore';
 import { Link as RouterLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,7 +15,7 @@ export const ListEdificios = () => {
         <>
             <ListItemButton onClick={() => setOpenVent(!openVent)}>
                 <ListItemIcon>
-                    <LocationCityIcon fontSize='small'/>
+                    <LocationCityIcon fontSize='small' />
                 </ListItemIcon>
                 <ListItemText primary="Edificios" />
                 {openVent ? <ExpandLess /> : <ExpandMore />}
